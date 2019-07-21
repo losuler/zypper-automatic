@@ -5,6 +5,3 @@ Wants=zypper-automatic.timer
 [Service]
 WorkingDirectory=/usr/local/bin/zypper-automatic
 ExecStart=/usr/bin/python3 /usr/local/bin/zypper-automatic/zypper-automatic.py
-
-[Install]
-WantedBy=multi-user.target
