@@ -64,7 +64,6 @@ def install_patches():
             print("See output below.")
             print(err.output)
     
-    output = str(output, 'utf-8')
     return output
 
 def send_email(content, subject, email_to):
