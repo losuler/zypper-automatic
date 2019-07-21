@@ -43,7 +43,7 @@ def list_patches():
     print("Retrieving list of all patches...")
     try:
         output = subprocess.check_output(["zypper", "list-patches"])
-    except CalledProcessError as err:
+    except subprocess.CalledProcessError as err:
         print("An error occured while listing patches.")
         print("See output below.")
         print(err.output)
@@ -55,7 +55,7 @@ def install_patches():
     print("Installing patches...")
     try:
         output = subprocess.check_output(["zypper", "patch", "--category", "security", "--no-confirm", "--with-interactive", "--details"])
-    except CalledProcessError as err:
+    except subprocess.CalledProcessError as err:
         if err.returncode == 102:
             print("Reboot required.")
             output = err.output
