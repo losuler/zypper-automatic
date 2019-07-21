@@ -1,0 +1,12 @@
+[Unit]
+Description=Run zypper-automatic at 3:00 AM
+Requires=zypper-automatic.service
+
+[Timer]
+Unit=zypper-automatic.service
+Persistent=true
+OnCalendar=*-*-* 03:00:00
+RandomizedDelaySec=15m
+
+[Install]
+WantedBy=timers.target
