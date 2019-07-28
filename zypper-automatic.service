@@ -3,5 +3,4 @@ Description=Automatically performs patches with Zypper
 Wants=zypper-automatic.timer
 
 [Service]
-WorkingDirectory=/usr/local/bin/zypper-automatic
-ExecStart=/usr/bin/python3 /usr/local/bin/zypper-automatic/zypper-automatic.py
+ExecStart=/usr/bin/python3 /usr/bin/zypper-automatic
