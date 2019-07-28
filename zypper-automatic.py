@@ -11,10 +11,10 @@ ERROR = "\033[91m" + "[ERROR]" + "\033[0m"
 def parse_config():
     config = configparser.ConfigParser()
     try:
-        config.read('config.ini')
+        config.read('zypper-automatic.ini')
         email_to = config['EMAIL']['EMAIL_TO']
     except KeyError:
-        sys.exit(f"{ERROR} Please check config.ini")
+        sys.exit(f"{ERROR} Please check /etc/zypper-automatic.ini")
     return email_to
 
 def check_root():
