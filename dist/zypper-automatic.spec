@@ -31,7 +31,7 @@ install -m 0644 %{name}.timer %{buildroot}/%{_unitdir}/%{name}.timer
 %files
 %license LICENSE
 %{_bindir}/%{name}
-%{_sysconfdir}/%{name}.ini
+%config(noreplace) %{_sysconfdir}/%{name}.ini
 %{_unitdir}/%{name}.service
 %{_unitdir}/%{name}.timer
 
