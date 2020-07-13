@@ -15,8 +15,6 @@ zypper-automatic is a small script that automatically updates
 and patches software at defined intervals.
 
 %prep
-# Fix for env-script-interpreter
-sed '1 s|/usr/bin/env python3|/usr/bin/python3|' %{name}.py
 %autosetup
 
 %build
