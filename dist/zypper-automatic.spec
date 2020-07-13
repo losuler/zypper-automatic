@@ -3,7 +3,7 @@ Version:        1.0.0
 Release:        1%{?dist}
 Summary:        Zypper Updater
 
-License:        GPLv3+
+License:        GPL-3.0-or-later
 URL:            https://gitlab.com/losuler/%{name}
 Source0:        https://gitlab.com/losuler/%{name}/-/archive/%{version}/%{name}-%{version}.tar.gz
 
