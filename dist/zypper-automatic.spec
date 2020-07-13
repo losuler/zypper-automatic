@@ -1,6 +1,6 @@
 Name:           zypper-automatic
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        0
 Summary:        Zypper Updater
 
 License:        GPL-3.0-or-later
