@@ -36,5 +36,3 @@ install -m 0644 %{name}.timer %{buildroot}/%{_unitdir}/%{name}.timer
 %{_unitdir}/%{name}.timer
 
 %changelog
-* Sat Jul 27 2019 losuler <1330924-losuler@users.noreply.gitlab.com>
-- Test release
