@@ -6,6 +6,7 @@ Summary:        Zypper Updater
 License:        GPL-3.0-or-later
 URL:            https://gitlab.com/losuler/%{name}
 Source0:        https://gitlab.com/losuler/%{name}/-/archive/%{version}/%{name}-%{version}.tar.gz
+Patch0:         env-script-interpreter-fix.patch
 
 Requires:       python3
 BuildArch:      noarch

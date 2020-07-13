@@ -1,0 +1,8 @@
+--- zypper-automatic.py.orig	2020-07-14 04:26:03.084997328 +1000
++++ zypper-automatic.py	2020-07-14 04:26:18.238566105 +1000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python3
++#!/usr/bin/python3
+ 
+ import subprocess
+ import getpass
