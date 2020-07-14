@@ -5,17 +5,24 @@ import getpass
 import time
 import pdb
 import configparser
+import sys
 
 ERROR = "\033[91m" + "[ERROR]" + "\033[0m"
 
-def parse_config():
+def parse_config(path):
     config = configparser.ConfigParser()
     try:
-        config.read('/etc/zypper-automatic.ini')
-        email_to = config['EMAIL']['EMAIL_TO']
+        config.read(path)
+
+        emitter = config['EMITTER']['EMITTER']
+        if emitter == '':
+            sys.exit(f"{ERROR} Missing EMITTER type.")
+        elif emitter != 'EMAIL' and emitter != 'TELEGRAM':
+            sys.exit(f"{ERROR} EMITTER type must be either EMAIL or TELEGRAM.")
     except KeyError:
         sys.exit(f"{ERROR} Please check /etc/zypper-automatic.ini")
-    return email_to
+
+    return config
 
 def check_root():
     if getpass.getuser() != "root":
@@ -74,6 +81,12 @@ def send_email(content, subject, email_to):
     output = command.communicate()[0]
     return output
 
+def send_telegram(content, token, chat_id):
+    print("Sending Telegram message...")
+    url = f'https://api.telegram.org/bot{token}/sendMessage?text{msg}&chat_id={chat_id}'
+    r = requests.get(url)
+    return r
+
 def compose_body(time_start):
     ref_out = refresh_repos()
     ins_out = install_patches()
@@ -96,10 +109,20 @@ def compose_body(time_start):
     return body
 
 if __name__ == "__main__":
-    time_start = time.asctime(time.localtime(time.time()))
-    subject = "zypper-automatic"
-    email_to = parse_config()
-    
     check_root()
+
+    time_start = time.asctime(time.localtime(time.time()))
     body = compose_body(time_start)
-    send_email(body, subject, email_to)
+
+    subject = "zypper-automatic"
+    config = parse_config('/etc/zypper-automatic.ini')
+
+    emitter = config['EMITTER']['EMITTER']
+    email_to = config['EMAIL']['EMAIL_TO']
+    token = config['TELEGRAM']['TOKEN']
+    chat_id = config['TELEGRAM']['CHAT_ID']
+
+    if emitter == str.upper('EMAIL'):
+        send_email(body, subject, email_to)
+    elif emitter == str.upper('TELEGRAM'):
+        send_telegram(body, token, chat_id)
