@@ -93,9 +93,7 @@ def compose_body(time_start):
     ins_out = install_patches()
     lis_out = list_patches()
     
-    outputs = {'ref_out': ref_out,
-               'ins_out': ins_out,
-               'lis_out': lis_out}
+    outputs = {'ref_out': ref_out, 'ins_out': ins_out, 'lis_out': lis_out}
     
     # Convert bytes to strings if needed.
     for key, value in outputs.items():
