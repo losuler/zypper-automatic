@@ -62,7 +62,11 @@ def list_patches():
 def install_patches():
     print("Installing patches...")
     try:
-        output = subprocess.check_output(["zypper", "patch", "--category", "security", "--no-confirm", "--with-interactive", "--details"])
+        output = subprocess.check_output(["zypper", "patch",
+                                          "--category", "security",
+                                          "--no-confirm",
+                                          "--with-interactive",
+                                          "--details"])
     except subprocess.CalledProcessError as err:
         if err.returncode == 102:
             print("Reboot required.")
@@ -77,7 +81,9 @@ def install_patches():
 def send_email(content, subject, email_to):
     print("Sending email...")
     message = subprocess.Popen(["echo", content], stdout=subprocess.PIPE)
-    command = subprocess.Popen(["mail", "-s", subject, email_to], stdin=message.stdout, stdout=subprocess.PIPE)
+    command = subprocess.Popen(["mail", "-s", subject, email_to],
+                                stdin=message.stdout,
+                                stdout=subprocess.PIPE)
     message.stdout.close()
     output = command.communicate()[0]
     return output
