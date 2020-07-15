@@ -122,7 +122,7 @@ if __name__ == "__main__":
     token = config['TELEGRAM']['TOKEN']
     chat_id = config['TELEGRAM']['CHAT_ID']
 
-    if emitter == str.upper('EMAIL'):
+    if str.upper(emitter) == 'EMAIL':
         send_email(body, subject, email_to)
-    elif emitter == str.upper('TELEGRAM'):
+    elif str.upper(emitter) == 'TELEGRAM':
         send_telegram(body, token, chat_id)
