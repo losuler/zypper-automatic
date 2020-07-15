@@ -89,7 +89,7 @@ def send_email(content, subject, email_to):
     return output
 
 def send_telegram(content, token, chat_id):
-    print("Sending Telegram message...")
+    logging.info("Sending Telegram message...")
     url = f'https://api.telegram.org/bot{token}/sendMessage?text={content}&chat_id={chat_id}'
     r = requests.get(url)
     return r
