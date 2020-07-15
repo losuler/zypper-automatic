@@ -6,6 +6,7 @@ import time
 import pdb
 import configparser
 import sys
+import logging
 import requests
 
 ERROR = "\033[91m" + "[ERROR]" + "\033[0m"
@@ -17,20 +18,24 @@ def parse_config(path):
 
         emitter = config['EMITTER']['EMITTER']
         if emitter == '':
-            sys.exit(f"{ERROR} Missing EMITTER type.")
+            logging.critical("Missing EMITTER type.")
+            sys.exit()
         elif str.upper(emitter) != 'EMAIL' and str.upper(emitter) != 'TELEGRAM':
-            sys.exit(f"{ERROR} EMITTER type must be either EMAIL or TELEGRAM.")
+            logging.critical("EMITTER type must be either EMAIL or TELEGRAM.")
+            sys.exit()
     except KeyError:
-        sys.exit(f"{ERROR} Please check /etc/zypper-automatic.ini")
+        logging.critical("Please check /etc/zypper-automatic.ini")
+        sys.exit()
 
     return config
 
 def check_root():
     if getpass.getuser() != "root":
-        raise RuntimeError("must be root to execute zypper commands.")
+        logging.critical("Must be root to execute zypper commands.")
+        sys.exit()
 
 def refresh_repos():
-    print("Refreshing repositories...")
+    logging.info("Refreshing repositories...")
     for i in range(0, 2):
         while True:
             try:
@@ -40,27 +45,25 @@ def refresh_repos():
                 continue
             return output
     else:
-        print("An error occured while refreshing repos.")
-        print("See output below.")
+        logging.warning("An error occured while refreshing repos. See output below.")
         print(err.output)
         output = err.output
     
     return output
 
 def list_patches():
-    print("Retrieving list of all patches...")
+    logging.info("Retrieving list of all patches...")
     try:
         output = subprocess.check_output(["zypper", "list-patches"])
     except subprocess.CalledProcessError as err:
-        print("An error occured while listing patches.")
-        print("See output below.")
+        logging.warning("An error occured while listing patches. See output below.")
         print(err.output)
         output = err.output
     
     return output
 
 def install_patches():
-    print("Installing patches...")
+    logging.info("Installing patches...")
     try:
         output = subprocess.check_output(["zypper", "patch",
                                           "--category", "security",
@@ -69,11 +72,10 @@ def install_patches():
                                           "--details"])
     except subprocess.CalledProcessError as err:
         if err.returncode == 102:
-            print("Reboot required.")
+            logging.info("Reboot required.")
             output = err.output
         else:
-            print("An error occured while installing patches.")
-            print("See output below.")
+            logging.warning("An error occured while installing patches. See output below.")
             print(err.output)
     
     return output
@@ -114,6 +116,8 @@ def compose_body(time_start):
     return body
 
 if __name__ == "__main__":
+    logging.basicConfig(format='[%(levelname)s] %(message)s')
+
     check_root()
 
     time_start = time.asctime(time.localtime(time.time()))
