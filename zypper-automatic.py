@@ -6,6 +6,7 @@ import time
 import pdb
 import configparser
 import sys
+import requests
 
 ERROR = "\033[91m" + "[ERROR]" + "\033[0m"
 
