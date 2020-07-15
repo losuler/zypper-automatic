@@ -18,7 +18,7 @@ def parse_config(path):
         emitter = config['EMITTER']['EMITTER']
         if emitter == '':
             sys.exit(f"{ERROR} Missing EMITTER type.")
-        elif emitter != 'EMAIL' and emitter != 'TELEGRAM':
+        elif str.upper(emitter) != 'EMAIL' and str.upper(emitter) != 'TELEGRAM':
             sys.exit(f"{ERROR} EMITTER type must be either EMAIL or TELEGRAM.")
     except KeyError:
         sys.exit(f"{ERROR} Please check /etc/zypper-automatic.ini")
