@@ -9,8 +9,6 @@ import sys
 import logging
 import requests
 
-ERROR = "\033[91m" + "[ERROR]" + "\033[0m"
-
 def parse_config(path):
     config = configparser.ConfigParser()
     try:
