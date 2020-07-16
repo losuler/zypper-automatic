@@ -34,9 +34,38 @@ zypper install zypper-automatic
 
 ## Config
 
+The configuration file `zypper-automatic.ini` has three main sections. The already filled in values in the example config are the defaults.
+
+### Emitters
+
+```toml
+[EMITTER]
+EMITTER =
+```
+
+The `emitter` refers to one of the message services listed in the subsections below.
+
+#### Email
+
 ```toml
 [EMAIL]
-#EMAIL_TO = email@example.com
+EMAIL_TO =
 ```
 
 `EMAIL_TO` is the email in which to send the notification to. It requires a Sendmail compatible MTA (Mail Transfer Agent) to be setup.
+
+#### Telegram
+
+```toml
+[TELEGRAM]
+TOKEN =
+CHAT_ID =
+```
+
+`TOKEN` is the token for the Telegram bot, which is provided by creating a bot by following the steps provided in the [Telegram bot API documentation](https://core.telegram.org/bots#3-how-do-i-create-a-bot).
+
+`CHAT_ID` is the unique identifier for the target chat. It can be obtained by messaging the bot and executing the following command (replace `$BOT_TOKEN`). The ID may be found at `"chat": {"id": 12345678},`:
+
+```sh
+curl https://api.telegram.org/bot$BOT_TOKEN/getUpdates | python -m json.tool
+```
