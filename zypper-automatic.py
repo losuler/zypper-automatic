@@ -14,7 +14,7 @@ def parse_config(path):
     try:
         config.read(path)
 
-        emitter = config['EMITTER']['EMITTER']
+        emitter = config['EMITTERS']['EMITTER']
         if emitter == '':
             logging.critical("Missing EMITTER type.")
             sys.exit()
@@ -124,7 +124,7 @@ if __name__ == "__main__":
     subject = "zypper-automatic"
     config = parse_config('/etc/zypper-automatic.ini')
 
-    emitter = config['EMITTER']['EMITTER']
+    emitter = config['EMITTERS']['EMITTER']
     email_to = config['EMAIL']['EMAIL_TO']
     token = config['TELEGRAM']['TOKEN']
     chat_id = config['TELEGRAM']['CHAT_ID']
