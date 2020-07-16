@@ -39,11 +39,11 @@ The configuration file `zypper-automatic.ini` has three main sections. The alrea
 ### Emitters
 
 ```toml
-[EMITTER]
+[EMITTERS]
 EMITTER =
 ```
 
-The `emitter` refers to one of the message services listed in the subsections below.
+The `EMITTER` refers to one of the message services listed in the subsections below.
 
 #### Email
 
