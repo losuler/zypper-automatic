@@ -11,5 +11,5 @@
 - [x] Add Zypper patch command configuration.
     - [x] All or patches in category.
     - [x] With interactive patches.
-- [ ] Add an option to list patches only (not install them).
+- [x] Add an option to list patches only (not install them).
 - [ ] Add an option not to send a notification if no patches were found.

@@ -143,6 +143,7 @@ if __name__ == "__main__":
 
     categories = config['ZYPPER']['PATCH_CATEGORIES']
     with_interactive = config['ZYPPER']['WITH_INTERACTIVE']
+    list_only = config['ZYPPER']['LIST_ONLY']
 
     emitter = config['EMITTERS']['EMITTER']
     email_to = config['EMAIL']['EMAIL_TO']
@@ -152,7 +153,8 @@ if __name__ == "__main__":
     time_start = time.asctime(time.localtime(time.time()))
 
     refresh_output = refresh_repos()
-    install_output = install_patches(categories, with_interactive)
+    if upper(list_only) != "TRUE":
+        install_output = install_patches(categories, with_interactive)
     list_output = list_patches()
 
     body = compose_body(time_start, refresh_output, install_output, list_output)
