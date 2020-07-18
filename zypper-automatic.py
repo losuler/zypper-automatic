@@ -94,12 +94,10 @@ def send_telegram(content, token, chat_id):
     r = requests.get(url)
     return r
 
-def compose_body(time_start):
-    ref_out = refresh_repos()
-    ins_out = install_patches()
-    lis_out = list_patches()
-    
-    outputs = {'ref_out': ref_out, 'ins_out': ins_out, 'lis_out': lis_out}
+def compose_body(time_start, refresh_output, install_output, list_output):
+    outputs = {'refresh_output': refresh_output,
+               'install_output': install_output,
+               'list_output': list_output}
     
     # Convert bytes to strings if needed.
     for key, value in outputs.items():
@@ -121,13 +119,18 @@ if __name__ == "__main__":
 
     config = parse_config('/etc/zypper-automatic.ini')
 
+    categories = config['ZYPPER']['PATCH_CATEGORIES']
+
     emitter = config['EMITTERS']['EMITTER']
     email_to = config['EMAIL']['EMAIL_TO']
     token = config['TELEGRAM']['TOKEN']
     chat_id = config['TELEGRAM']['CHAT_ID']
 
     time_start = time.asctime(time.localtime(time.time()))
-    body = compose_body(time_start)
+    refresh_output = refresh_repos()
+    install_output = install_patches()
+    list_output = list_patches()
+    body = compose_body(time_start, refresh_output, install_output, list_output)
 
     # For emails only
     subject = "zypper-automatic"
