@@ -8,9 +8,8 @@
 - [x] Configuration file for email, subject, etc.
 - [ ] Add Matrix emitter.
 - [x] Clean up log messages.
-- [ ] Add Zypper patch command configuration.
-    - [ ] All or patches in category.
-    - [ ] With or without interactive.
-    - [ ] Skip interactive patches.
+- [x] Add Zypper patch command configuration.
+    - [x] All or patches in category.
+    - [x] With interactive patches.
 - [ ] Add an option to list patches only (not install them).
 - [ ] Add an option not to send a notification if no patches were found.
