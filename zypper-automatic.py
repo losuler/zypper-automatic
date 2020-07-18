@@ -116,18 +116,21 @@ def compose_body(time_start):
 if __name__ == "__main__":
     logging.basicConfig(format='[%(levelname)s] %(message)s', level=logging.INFO)
 
+    # Root is required in order to run zypper
     check_root()
 
-    time_start = time.asctime(time.localtime(time.time()))
-    body = compose_body(time_start)
-
-    subject = "zypper-automatic"
     config = parse_config('/etc/zypper-automatic.ini')
 
     emitter = config['EMITTERS']['EMITTER']
     email_to = config['EMAIL']['EMAIL_TO']
     token = config['TELEGRAM']['TOKEN']
     chat_id = config['TELEGRAM']['CHAT_ID']
+
+    time_start = time.asctime(time.localtime(time.time()))
+    body = compose_body(time_start)
+
+    # For emails only
+    subject = "zypper-automatic"
 
     if str.upper(emitter) == 'EMAIL':
         send_email(body, subject, email_to)
