@@ -36,6 +36,24 @@ zypper install zypper-automatic
 
 The configuration file `zypper-automatic.ini` has three main sections. The already filled in values in the example config are the defaults.
 
+### Zypper
+
+```toml
+[ZYPPER]
+PATCH_CATEGORIES =
+WITH_INTERACTIVE =
+LIST_ONLY =
+```
+
+`PATCH_CATEGORIES` is a list delimited by commas `,` of patches you'd like to install. "Commonly used values for category are security, recommended, optional, feature, document or yast".[1]
+
+`WITH_INTERACTIVE` when set to `TRUE` will install "interactive patches, that is, those that need reboot, contain a message, or update a package whose license needs to be confirmed."[2]
+
+`LIST_ONLY` when set to `TRUE` will only send a list of the patches waiting to be installed and will not install them.
+
+[1]: https://en.opensuse.org/SDB:Zypper_manual#CONCEPTS
+[2]: https://en.opensuse.org/SDB:Zypper_manual#COMMANDS
+
 ### Emitters
 
 ```toml
