@@ -34,22 +34,22 @@ zypper install zypper-automatic
 
 ## Config
 
-The configuration file `zypper-automatic.ini` has three main sections. The already filled in values in the example config are the defaults.
+The configuration file located at `/etc/zypper-automatic.conf` has three main sections. The already filled in values in the examples below are the defaults.
 
 ### Zypper
 
 ```toml
-[ZYPPER]
-PATCH_CATEGORIES =
-WITH_INTERACTIVE =
-LIST_ONLY =
+[zypper]
+patch_categories =
+with_interactive = false
+list_only = false
 ```
 
-`PATCH_CATEGORIES` is a list delimited by commas `,` of patches you'd like to install. Categories include `security`, `recommended`, `optional`, `feature`, `document` and `yast`.<sup>[[1]]</sup>
+`patch_categories` is a list delimited by commas `,` of patches you'd like to install. Categories include `security`, `recommended`, `optional`, `feature`, `document` and `yast`.<sup>[[1]]</sup>
 
-`WITH_INTERACTIVE` when set to `TRUE` will install "interactive patches, that is, those that need reboot, contain a message, or update a package whose license needs to be confirmed."<sup>[[2]]</sup>
+`with_interactive` when set to `true` will install "interactive patches, that is, those that need reboot, contain a message, or update a package whose license needs to be confirmed."<sup>[[2]]</sup>
 
-`LIST_ONLY` when set to `TRUE` will only send a list of the patches waiting to be installed and will not install them.
+`list_only` when set to `true` will only send a list of the patches waiting to be installed and will not install them.
 
 [1]: https://en.opensuse.org/SDB:Zypper_manual#CONCEPTS
 [2]: https://en.opensuse.org/SDB:Zypper_manual#COMMANDS
@@ -57,32 +57,32 @@ LIST_ONLY =
 ### Emitters
 
 ```toml
-[EMITTERS]
-EMITTER =
+[emitters]
+emitter =
 ```
 
-The `EMITTER` refers to one of the message services listed in the subsections below.
+The `emitter` refers to one of the message services listed in the subsections below.
 
 #### Email
 
 ```toml
-[EMAIL]
-EMAIL_TO =
+[email]
+email_to =
 ```
 
-`EMAIL_TO` is the email in which to send the notification to. It requires a Sendmail compatible MTA (Mail Transfer Agent) to be setup.
+`email_to` is the email in which to send the notification to. It requires a Sendmail compatible MTA (Mail Transfer Agent) to be setup.
 
 #### Telegram
 
 ```toml
-[TELEGRAM]
-TOKEN =
-CHAT_ID =
+[telegram]
+token =
+chat_id =
 ```
 
-`TOKEN` is the token for the Telegram bot, which is provided by creating a bot by following the steps provided in the [Telegram bot API documentation](https://core.telegram.org/bots#3-how-do-i-create-a-bot).
+`token` is the token for the Telegram bot, which is provided by creating a bot by following the steps provided in the [Telegram bot API documentation](https://core.telegram.org/bots#3-how-do-i-create-a-bot).
 
-`CHAT_ID` is the unique identifier for the target chat. It can be obtained by messaging the bot and executing the following command (replace `$BOT_TOKEN`). The ID may be found at `"chat": {"id": 12345678},`:
+`chat_id` is the unique identifier for the target chat. It can be obtained by messaging the bot and executing the following command (replace `$BOT_TOKEN`). The ID may be found at `"chat": {"id": 12345678},`:
 
 ```sh
 curl https://api.telegram.org/bot$BOT_TOKEN/getUpdates | python -m json.tool
