@@ -1,7 +1,7 @@
 Name:           zypper-automatic
 Version:        2.0.0
 Release:        0
-Summary:        Zypper Updater
+Summary:        Automated updates
 
 License:        GPL-3.0-or-later
 URL:            https://gitlab.com/losuler/%{name}
