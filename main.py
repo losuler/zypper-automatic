@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 import subprocess
 import getpass
@@ -23,7 +23,7 @@ def parse_config(path):
             logging.critical("EMITTER type must be either EMAIL or TELEGRAM.")
             sys.exit()
     except KeyError:
-        logging.critical("Please check /etc/zypper-automatic.ini")
+        logging.critical("Please check /etc/zypper-automatic.conf")
         sys.exit()
 
     return config
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     # Root is required in order to run zypper
     check_root()
 
-    config = parse_config('/etc/zypper-automatic.ini')
+    config = parse_config('/etc/zypper-automatic.conf')
 
     categories = config['ZYPPER']['PATCH_CATEGORIES']
     with_interactive = config['ZYPPER']['WITH_INTERACTIVE']

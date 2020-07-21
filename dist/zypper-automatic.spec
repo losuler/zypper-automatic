@@ -24,15 +24,15 @@ and patches software at defined intervals.
 mkdir -p %{buildroot}/%{_bindir}
 mkdir -p %{buildroot}/%{_sysconfdir}
 mkdir -p %{buildroot}/%{_unitdir}
-install -m 0755 %{name}.py %{buildroot}/%{_bindir}/%{name}
-install -m 0644 %{name}.ini %{buildroot}/%{_sysconfdir}/%{name}.ini
+install -m 0755 main.py %{buildroot}/%{_bindir}/%{name}
+install -m 0644 config.conf %{buildroot}/%{_sysconfdir}/%{name}.conf
 install -m 0644 %{name}.service %{buildroot}/%{_unitdir}/%{name}.service
 install -m 0644 %{name}.timer %{buildroot}/%{_unitdir}/%{name}.timer
 
 %files
 %license LICENSE
 %{_bindir}/%{name}
-%config(noreplace) %{_sysconfdir}/%{name}.ini
+%config(noreplace) %{_sysconfdir}/%{name}.conf
 %{_unitdir}/%{name}.service
 %{_unitdir}/%{name}.timer
 
