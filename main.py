@@ -36,13 +36,12 @@ def check_root():
 def refresh_repos():
     logging.info("Refreshing repositories...")
     for i in range(0, 2):
-        while True:
-            try:
-                output = subprocess.check_output(["zypper", "refresh"])
-            except CalledProcessError:
-                time.sleep(300)
-                continue
-            return output
+        try:
+            output = subprocess.check_output(["zypper", "refresh"])
+        except CalledProcessError:
+            time.sleep(300)
+            continue
+        break
     else:
         logging.warning("An error occured while refreshing repos. See output below.")
         print(err.output)
