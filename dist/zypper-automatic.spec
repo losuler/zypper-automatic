@@ -28,8 +28,8 @@ mkdir -p %{buildroot}/%{_sysconfdir}
 mkdir -p %{buildroot}/%{_unitdir}
 install -m 0755 main.py %{buildroot}/%{_bindir}/%{name}
 install -m 0644 config.conf %{buildroot}/%{_sysconfdir}/%{name}.conf
-install -m 0644 %{name}.service %{buildroot}/%{_unitdir}/%{name}.service
-install -m 0644 %{name}.timer %{buildroot}/%{_unitdir}/%{name}.timer
+install -m 0644 dist/%{name}.service %{buildroot}/%{_unitdir}/%{name}.service
+install -m 0644 dist/%{name}.timer %{buildroot}/%{_unitdir}/%{name}.timer
 
 %files
 %license LICENSE
