@@ -1,8 +1,0 @@
---- main.py.orig	2020-07-21 20:52:52.527117050 +1000
-+++ main.py	2020-07-21 20:53:32.839003584 +1000
-@@ -1,4 +1,4 @@
--#!/usr/bin/env python3
-+#!/usr/bin/python3
- 
- import subprocess
- import getpass
