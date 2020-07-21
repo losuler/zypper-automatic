@@ -83,7 +83,7 @@ def install_patches(categories, with_interactive):
             if str.upper(c) == "YAST":
                 command.append("yast")
     else:
-        logging.warning("No categories specified. All patches will be installed."
+        logging.warning("No categories specified. All patches will be installed.")
 
     if str.upper(with_interactive) == "TRUE":
         command.append("--with-interactive")
