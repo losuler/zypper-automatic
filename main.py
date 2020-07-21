@@ -117,9 +117,13 @@ def send_telegram(content, token, chat_id):
     return r
 
 def compose_body(time_start, refresh_output, install_output, list_output):
-    outputs = {'refresh_output': refresh_output,
-               'install_output': install_output,
-               'list_output': list_output}
+    if install_output == None:
+        outputs = {'refresh_output': refresh_output,
+                   'list_output': list_output}
+    else:
+        outputs = {'refresh_output': refresh_output,
+                   'install_output': install_output,
+                   'list_output': list_output}
     
     # Convert bytes to strings if needed.
     for key, value in outputs.items():
@@ -153,14 +157,15 @@ if __name__ == "__main__":
     time_start = time.asctime(time.localtime(time.time()))
 
     refresh_output = refresh_repos()
-    if str.upper(list_only) != "TRUE":
-        install_output = install_patches(categories, with_interactive)
-    list_output = list_patches()
 
     if str.upper(list_only) != "TRUE":
-        body = compose_body(time_start, refresh_output, install_output, list_output)
+        install_output = install_patches(categories, with_interactive)
     else:
-        body = compose_body(time_start, refresh_output, list_output)
+        install_output = None
+
+    list_output = list_patches()
+
+    body = compose_body(time_start, refresh_output, install_output, list_output)
 
     # For emails only
     subject = "zypper-automatic"
