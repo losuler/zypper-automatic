@@ -15,12 +15,12 @@ def parse_config(path):
     try:
         config.read(path)
 
-        emitter = config['EMITTERS']['EMITTER']
+        emitter = config['emitters']['emitter']
         if emitter == '':
-            logging.critical("Missing EMITTER type.")
+            logging.critical("Missing emitter type.")
             sys.exit()
-        elif str.upper(emitter) != 'EMAIL' and str.upper(emitter) != 'TELEGRAM':
-            logging.critical("EMITTER type must be either EMAIL or TELEGRAM.")
+        elif str.lower(emitter) != 'email' and str.lower(emitter) != 'telegram':
+            logging.critical("Emitter type must be either email or telegram.")
             sys.exit()
     except KeyError:
         logging.critical("Please check /etc/zypper-automatic.conf")
@@ -70,22 +70,22 @@ def install_patches(categories, with_interactive):
         for c in categories_list:
             if "--category" not in command:
                 command.append("--category")
-            if str.upper(c) == "SECURITY":
+            if str.lower(c) == "security":
                 command.append("security")
-            if str.upper(c) == "RECOMMENDED":
+            if str.lower(c) == "recommended":
                 command.append("recommended")
-            if str.upper(c) == "OPTIONAL":
+            if str.lower(c) == "optional":
                 command.append("optional")
-            if str.upper(c) == "FEATURE":
+            if str.lower(c) == "feature":
                 command.append("feature")
-            if str.upper(c) == "DOCUMENT":
+            if str.lower(c) == "document":
                 command.append("document")
-            if str.upper(c) == "YAST":
+            if str.lower(c) == "yast":
                 command.append("yast")
     else:
         logging.warning("No categories specified. All patches will be installed.")
 
-    if str.upper(with_interactive) == "TRUE":
+    if str.lower(with_interactive) == "true":
         command.append("--with-interactive")
 
     try:
@@ -145,20 +145,20 @@ if __name__ == "__main__":
 
     config = parse_config('/etc/zypper-automatic.conf')
 
-    categories = config['ZYPPER']['PATCH_CATEGORIES']
-    with_interactive = config['ZYPPER']['WITH_INTERACTIVE']
-    list_only = config['ZYPPER']['LIST_ONLY']
+    categories = config['zypper']['patch_categories']
+    with_interactive = config['zypper']['with_interactive']
+    list_only = config['zypper']['list_only']
 
-    emitter = config['EMITTERS']['EMITTER']
-    email_to = config['EMAIL']['EMAIL_TO']
-    token = config['TELEGRAM']['TOKEN']
-    chat_id = config['TELEGRAM']['CHAT_ID']
+    emitter = config['emitters']['emitter']
+    email_to = config['email']['email_to']
+    token = config['telegram']['token']
+    chat_id = config['telegram']['chat_id']
 
     time_start = time.asctime(time.localtime(time.time()))
 
     refresh_output = refresh_repos()
 
-    if str.upper(list_only) != "TRUE":
+    if str.lower(list_only) != "true":
         install_output = install_patches(categories, with_interactive)
     else:
         install_output = None
@@ -170,7 +170,7 @@ if __name__ == "__main__":
     # For emails only
     subject = "zypper-automatic"
 
-    if str.upper(emitter) == 'EMAIL':
+    if str.lower(emitter) == 'email':
         send_email(body, subject, email_to)
-    elif str.upper(emitter) == 'TELEGRAM':
+    elif str.lower(emitter) == 'telegram':
         send_telegram(body, token, chat_id)
