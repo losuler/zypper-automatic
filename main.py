@@ -34,9 +34,9 @@ def check_root():
         sys.exit()
 
 def refresh_repos():
-    logging.info("Refreshing repositories...")
     for i in range(0, 2):
         try:
+            logging.info("Refreshing repositories...")
             output = subprocess.check_output(["zypper", "refresh"])
         except CalledProcessError:
             time.sleep(300)
@@ -50,8 +50,8 @@ def refresh_repos():
     return output
 
 def list_patches():
-    logging.info("Retrieving list of all patches...")
     try:
+        logging.info("Retrieving list of all patches...")
         output = subprocess.check_output(["zypper", "list-patches"])
     except subprocess.CalledProcessError as err:
         logging.warning("An error occured while listing patches. See output below.")
@@ -61,7 +61,6 @@ def list_patches():
     return output
 
 def install_patches(categories, with_interactive):
-    logging.info("Installing patches...")
     command = ["zypper", "patch", "--no-confirm", "--details"]
 
     if categories != '':
@@ -88,6 +87,7 @@ def install_patches(categories, with_interactive):
         command.append("--with-interactive")
 
     try:
+        logging.info("Installing patches...")
         output = subprocess.check_output(command)
     except subprocess.CalledProcessError as err:
         if err.returncode == 102:
@@ -100,18 +100,18 @@ def install_patches(categories, with_interactive):
     return output
 
 def send_email(content, subject, email_to):
-    logging.info("Sending email...")
     message = subprocess.Popen(["echo", content], stdout=subprocess.PIPE)
     command = subprocess.Popen(["mail", "-s", subject, email_to],
                                 stdin=message.stdout,
                                 stdout=subprocess.PIPE)
     message.stdout.close()
+    logging.info("Sending email...")
     output = command.communicate()[0]
     return output
 
 def send_telegram(content, token, chat_id):
-    logging.info("Sending Telegram message...")
     url = f'https://api.telegram.org/bot{token}/sendMessage?text={content}&chat_id={chat_id}'
+    logging.info("Sending Telegram message...")
     r = requests.get(url)
     return r
 
