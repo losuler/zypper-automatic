@@ -1,9 +1,9 @@
 -------------------------------------------------------------------
 Tue Jul 21 17:35:33 UTC 2020 - Bryce Torcello <losuler@posteo.net>
 
-- Updated summary
-- Added requires python-requests dependency
-- Removed noreplace from config macro due to backwards incompatible
+- Update zypper-automatic to version 2.0.0
+- Add python-requests dependency
+- Remove noreplace from config macro due to backwards incompatible
 changes
 
 -------------------------------------------------------------------
