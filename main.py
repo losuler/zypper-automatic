@@ -100,7 +100,7 @@ def install_patches(categories, with_interactive):
     return output
 
 def send_email(content, subject, email_to):
-    print("Sending email...")
+    logging.info("Sending email...")
     message = subprocess.Popen(["echo", content], stdout=subprocess.PIPE)
     command = subprocess.Popen(["mail", "-s", subject, email_to],
                                 stdin=message.stdout,
