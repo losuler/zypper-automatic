@@ -85,7 +85,7 @@ def install_patches(categories, with_interactive):
     else:
         logging.warning("No categories specified. All patches will be installed."
 
-    if upper(with_interactive) == "TRUE":
+    if str.upper(with_interactive) == "TRUE":
         command.append("--with-interactive")
 
     try:
@@ -153,7 +153,7 @@ if __name__ == "__main__":
     time_start = time.asctime(time.localtime(time.time()))
 
     refresh_output = refresh_repos()
-    if upper(list_only) != "TRUE":
+    if str.upper(list_only) != "TRUE":
         install_output = install_patches(categories, with_interactive)
     list_output = list_patches()
 
