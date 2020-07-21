@@ -32,7 +32,7 @@ install -m 0644 dist/%{name}.service %{buildroot}/%{_unitdir}/%{name}.service
 install -m 0644 dist/%{name}.timer %{buildroot}/%{_unitdir}/%{name}.timer
 
 %files
-%license LICENSE
+%license LICENSE.txt
 %{_bindir}/%{name}
 %config %{_sysconfdir}/%{name}.conf
 %{_unitdir}/%{name}.service
