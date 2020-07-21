@@ -158,9 +158,9 @@ if __name__ == "__main__":
     list_output = list_patches()
 
     if str.upper(list_only) != "TRUE":
-        body = compose_body(time_start, refresh_output, list_output)
-    else:
         body = compose_body(time_start, refresh_output, install_output, list_output)
+    else:
+        body = compose_body(time_start, refresh_output, list_output)
 
     # For emails only
     subject = "zypper-automatic"
