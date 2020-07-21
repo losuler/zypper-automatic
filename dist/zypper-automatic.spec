@@ -9,6 +9,8 @@ Source0:        https://gitlab.com/losuler/%{name}/-/archive/%{version}/%{name}-
 Patch0:         env-script-interpreter-fix.patch
 
 Requires:       python3
+Requires:       python-requests
+
 BuildArch:      noarch
 
 %description
