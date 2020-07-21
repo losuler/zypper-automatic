@@ -13,3 +13,4 @@
     - [x] With interactive patches.
 - [x] Add an option to list patches only (not install them).
 - [ ] Add an option not to send a notification if no patches were found.
+- [ ] Add unit tests
