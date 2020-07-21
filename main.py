@@ -66,7 +66,7 @@ def install_patches(categories, with_interactive):
     command = ["zypper", "patch", "--no-confirm", "--details"]
 
     if categories != '':
-        categories_list = categories.split(',')
+        categories_list = categories.replace(" ", "").split(',')
         for c in categories_list:
             if "--category" not in command:
                 command.append("--category")
