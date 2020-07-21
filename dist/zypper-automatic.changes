@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Tue Jul 21 17:35:33 UTC 2020 - Bryce Torcello <losuler@posteo.net>
+
+- Updated summary
+- Added requires python-requests dependency
+- Removed noreplace from config macro due to backwards incompatible
+changes
+
+-------------------------------------------------------------------
 Mon Jul 13 16:22:01 UTC 2020 - Bryce Torcello <losuler@posteo.net>
 
 - Initial packaging
