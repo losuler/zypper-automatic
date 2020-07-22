@@ -27,7 +27,9 @@ This repo can be added on supported systems by:
 zypper addrepo https://download.opensuse.org/repositories/home:losuler/openSUSE_Tumbleweed/home:losuler.repo
 # openSUSE Leap 15.2
 zypper addrepo https://download.opensuse.org/repositories/home:losuler/openSUSE_Leap_15.2/home:losuler.repo
+```
 
+```bash
 zypper refresh
 zypper install zypper-automatic
 ```
