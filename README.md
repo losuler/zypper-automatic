@@ -6,7 +6,7 @@
   <p align="center">
     <h3 align="center">Zypper Automatic</h3>
     <p align="center">
-      An automatic updater for Zypper designed for openSUSE.
+      Automatically install and notify of updates in openSUSE.
     </p>
   </p>
 </p>
