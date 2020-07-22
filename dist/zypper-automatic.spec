@@ -14,8 +14,8 @@ Requires:       python-requests
 BuildArch:      noarch
 
 %description
-zypper-automatic is a small script that automatically updates
-and patches software at defined intervals.
+zypper-automatic is a small program that automatically installs
+and notifies of updates at defined intervals.
 
 %prep
 %autosetup
