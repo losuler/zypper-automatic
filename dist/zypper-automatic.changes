@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Sat Aug  8 05:45:21 UTC 2020 - Bryce Torcello <losuler@posteo.net>
+
+- Refine description
+- Fix incorrect python version for requests
+
+-------------------------------------------------------------------
 Tue Jul 21 17:35:33 UTC 2020 - Bryce Torcello <losuler@posteo.net>
 
 - Update zypper-automatic to version 2.0.0
