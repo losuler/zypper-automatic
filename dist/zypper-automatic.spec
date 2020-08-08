@@ -1,6 +1,6 @@
 Name:           zypper-automatic
 Version:        2.0.0
-Release:        0
+Release:        1
 Summary:        Automated updates
 
 License:        GPL-3.0-or-later
@@ -9,7 +9,7 @@ Source0:        https://gitlab.com/losuler/%{name}/-/archive/%{version}/%{name}-
 Patch0:         env-script-interpreter-fix.patch
 
 Requires:       python3
-Requires:       python-requests
+Requires:       python3-requests
 
 BuildArch:      noarch
 
