@@ -47,9 +47,9 @@ with_interactive = false
 list_only = false
 ```
 
-`patch_categories` is a list delimited by commas `,` of patches you'd like to install. Categories include `security`, `recommended`, `optional`, `feature`, `document` and `yast`.<sup>[[1]]</sup>
+`patch_categories` is a list delimited by commas `,` of patches you'd like to install. Categories include `security`, `recommended`, `optional`, `feature`, `document` and `yast`.<sup>[1]</sup>
 
-`with_interactive` when set to `true` will install "interactive patches, that is, those that need reboot, contain a message, or update a package whose license needs to be confirmed."<sup>[[2]]</sup>
+`with_interactive` when set to `true` will install "interactive patches, that is, those that need reboot, contain a message, or update a package whose license needs to be confirmed."<sup>[2]</sup>
 
 `list_only` when set to `true` will only send a list of the patches waiting to be installed and will not install them.
 
