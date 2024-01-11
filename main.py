@@ -38,10 +38,12 @@ def refresh_repos():
         try:
             logging.info("Refreshing repositories...")
             output = subprocess.check_output(["zypper", "refresh"])
-        except CalledProcessError:
+            err = None
+            break
+        except subprocess.CalledProcessError as e:
+            err = e
             time.sleep(300)
             continue
-        break
     else:
         logging.warning("An error occured while refreshing repos. See output below.")
         print(err.output)
