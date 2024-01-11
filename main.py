@@ -115,7 +115,7 @@ def send_telegram(content, token, chat_id):
     return r
 
 def compose_body(time_start, refresh_output, install_output, list_output):
-    if install_output == None:
+    if install_output is None:
         outputs = {'refresh_output': refresh_output,
                    'list_output': list_output}
     else:
@@ -125,7 +125,7 @@ def compose_body(time_start, refresh_output, install_output, list_output):
 
     # Convert bytes to strings if needed.
     for key, value in outputs.items():
-        if type(value) is bytes:
+        if isinstance(value, bytes):
             outputs[key] = str(value, 'utf-8')
 
     # Combine outputs to create body of message.
