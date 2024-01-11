@@ -3,7 +3,6 @@
 import subprocess
 import getpass
 import time
-import pdb
 import configparser
 import sys
 import logging
@@ -46,7 +45,7 @@ def refresh_repos():
         logging.warning("An error occured while refreshing repos. See output below.")
         print(err.output)
         output = err.output
-    
+
     return output
 
 def list_patches():
@@ -57,7 +56,7 @@ def list_patches():
         logging.warning("An error occured while listing patches. See output below.")
         print(err.output)
         output = err.output
-    
+
     return output
 
 def install_patches(categories, with_interactive):
@@ -96,7 +95,7 @@ def install_patches(categories, with_interactive):
         else:
             logging.warning("An error occured while installing patches. See output below.")
             print(err.output)
-    
+
     return output
 
 def send_email(content, subject, email_to):
@@ -116,24 +115,22 @@ def send_telegram(content, token, chat_id):
     return r
 
 def compose_body(time_start, refresh_output, install_output, list_output):
-    if install_output == None:
+    if install_output is None:
         outputs = {'refresh_output': refresh_output,
                    'list_output': list_output}
     else:
         outputs = {'refresh_output': refresh_output,
                    'install_output': install_output,
                    'list_output': list_output}
-    
+
     # Convert bytes to strings if needed.
     for key, value in outputs.items():
-        if type(value) is bytes:
+        if isinstance(value, bytes):
             outputs[key] = str(value, 'utf-8')
-    
-    head = f"JOB STARTED: {time_start}"
-    
+
     # Combine outputs to create body of message.
     body = "\n".join(outputs.values())
-    
+
     return body
 
 if __name__ == "__main__":
